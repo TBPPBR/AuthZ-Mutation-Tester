@@ -1,0 +1,26 @@
+base_url: https://httpbin.org
+default_headers:
+  Authorization: Bearer good-token
+  X-Org-Id: "42"
+
+timeout_seconds: 10
+
+targets:
+  - name: get-anything
+    path: /anything
+    method: GET
+    headers:
+      X-Feature: baseline
+    body: null
+    expect_success_statuses: [200]
+    mutations:
+      - type: remove_header
+        name: Authorization
+      - type: replace_header
+        name: Authorization
+        value: Bearer invalid
+      - type: method
+        method: POST
+      - type: body_replace
+        path: user.id
+        value: 999
