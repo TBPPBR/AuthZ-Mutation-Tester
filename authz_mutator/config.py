@@ -9,8 +9,8 @@ from .types import Config, EndpointTarget
 
 
 def _coerce_target(raw: Dict[str, Any]) -> EndpointTarget:
-    name = str(raw["name"])  # required
-    path = str(raw["path"])  # required
+    name = str(raw["name"])
+    path = str(raw["path"]) 
     method = str(raw.get("method", "GET")).upper()
     headers = dict(raw.get("headers", {}))
     body = raw.get("body")
